@@ -1,49 +1,54 @@
 package com.vova_cons.tanks_battle.screens.game.ecs.systems;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.vova_cons.tanks_battle.screens.game.ecs.Components;
 import com.vova_cons.tanks_battle.screens.game.ecs.Families;
 import com.vova_cons.tanks_battle.screens.game.world.GameWorld;
+import com.vova_cons.tanks_battle.services.settings.PlayerKeys;
 import com.vova_cons.tanks_battle.utils.GameMathUtils;
 
-public class PlayerInputSystem extends FamilyGameSystem {
+public class PlayerInputSystem extends EntitySystem {
+    private final PlayerKeys keys;
+    private final Entity player;
     private int dx, dy;
     private float maxSpeed = 3.5f;
     private float acceleration = 10f;
     private float deceleration = 10f;
 
-    public PlayerInputSystem(GameWorld world) {
-        super(world, Families.players);
+    public PlayerInputSystem(PlayerKeys keys, Entity player) {
+        this.keys = keys;
+        this.player = player;
     }
 
-    public PlayerInputSystem(int priority, GameWorld world) {
-        super(priority, world, Families.players);
+    public PlayerInputSystem(int priority, PlayerKeys keys, Entity player) {
+        super(priority);
+        this.keys = keys;
+        this.player = player;
     }
 
     @Override
     public void update(float deltaTime) {
         processInput();
-        for(Entity entity : entities) {
-            processPlayer(entity, deltaTime);
-        }
+        processPlayer(player, deltaTime);
     }
 
     private void processInput() {
         dx = 0;
         dy = 0;
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+        if (Gdx.input.isKeyPressed(keys.up)) {
             dy += 1;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+        if (Gdx.input.isKeyPressed(keys.down)) {
             dy -= 1;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+        if (Gdx.input.isKeyPressed(keys.right)) {
             dx += 1;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if (Gdx.input.isKeyPressed(keys.left)) {
             dx -= 1;
         }
     }

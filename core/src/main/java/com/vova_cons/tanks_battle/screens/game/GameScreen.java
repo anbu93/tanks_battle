@@ -15,6 +15,7 @@ import com.vova_cons.tanks_battle.screens.game.world.GameWorld;
 import com.vova_cons.tanks_battle.screens.game.world.GameWorldParser;
 import com.vova_cons.tanks_battle.services.ScreensService;
 import com.vova_cons.tanks_battle.services.ServiceLocator;
+import com.vova_cons.tanks_battle.services.settings.SettingsService;
 
 public class GameScreen extends BaseScreen {
     public static int level = 1;
@@ -44,7 +45,8 @@ public class GameScreen extends BaseScreen {
         player.add(new Components.Player());
         engine.addEntity(player);
 
-        engine.addSystem(new PlayerInputSystem(world));
+        SettingsService settingsService = ServiceLocator.getService(SettingsService.class);
+        engine.addSystem(new PlayerInputSystem(settingsService.getPlayer1Keys(), player));
         engine.addSystem(new MoveSystem(world));
         engine.addSystem(new RenderSystem(world, batch));
     }
