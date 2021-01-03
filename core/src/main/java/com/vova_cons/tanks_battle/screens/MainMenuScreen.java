@@ -2,11 +2,14 @@ package com.vova_cons.tanks_battle.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.utils.Align;
 import com.vova_cons.tanks_battle.screens.assets.TerrainTilesAtlas;
+import com.vova_cons.tanks_battle.screens.assets.UiBuilder;
 import com.vova_cons.tanks_battle.screens.game.GameScreen;
 import com.vova_cons.tanks_battle.services.ScreensService;
 import com.vova_cons.tanks_battle.services.ServiceLocator;
@@ -39,23 +42,40 @@ public class MainMenuScreen extends SingleCreateScreen {
     }
 
     private void createMenu() {
+        // TODO refactor it to classic MVC?
+        Actor titleBg = UiBuilder.createPanelGreen();
+        this.addActor(titleBg);
+        Label title = UiBuilder.createLabel("Tanks battle", FontsService.Size.Title, Color.RED);
+        title.setPosition(UI.SCENE_WIDTH/2f, UI.SCENE_HEIGHT*0.75f, Align.center);
+        this.addActor(title);
+        titleBg.setSize(title.getWidth() + 50, title.getHeight()+50);
+        titleBg.setPosition(UI.SCENE_WIDTH/2f, UI.SCENE_HEIGHT*0.75f, Align.center);
+
+        Actor panel = UiBuilder.createPanel();
+        this.addActor(panel);
+
         VerticalGroup content = new VerticalGroup();
         content.space(30);
+        content.expand(true);
 
-        Label startLabel = ViewUtils.createLabel("Start game", FontsService.Size.H1, Color.RED);
+        ImageTextButton startLabel = UiBuilder.createButton("Play", FontsService.Size.H1);
         ViewUtils.clickListener(startLabel, this::clickStart);
         content.addActor(startLabel);
 
-        Label optionsLabel = ViewUtils.createLabel("Options", FontsService.Size.H1, Color.RED);
+        ImageTextButton optionsLabel = UiBuilder.createButton("Options", FontsService.Size.H1, Color.RED);
         ViewUtils.clickListener(optionsLabel, this::clickOptions);
         content.addActor(optionsLabel);
 
-        Label exitLabel = ViewUtils.createLabel("Exit", FontsService.Size.H1, Color.RED);
+        ImageTextButton exitLabel = UiBuilder.createButton("Exit", FontsService.Size.H1, Color.RED);
         ViewUtils.clickListener(exitLabel, this::clickExit);
         content.addActor(exitLabel);
+        content.pack();
 
         content.setPosition(UI.SCENE_WIDTH/2f, UI.SCENE_HEIGHT/2f, Align.center);
         this.addActor(content);
+
+        panel.setSize(content.getWidth() + 50, content.getHeight() + 50);
+        panel.setPosition(UI.SCENE_WIDTH/2f, UI.SCENE_HEIGHT/2f, Align.center);
     }
 
     private void clickStart() {

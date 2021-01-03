@@ -9,7 +9,7 @@ public interface FontsService extends Service {
     void dispose();
 
     enum Size {
-        H1(41), H2(30);
+        Title(60), H1(41), H2(30);
 
         int size;
         Size(int size) {

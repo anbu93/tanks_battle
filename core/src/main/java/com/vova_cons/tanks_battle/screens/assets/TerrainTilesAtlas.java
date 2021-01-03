@@ -11,7 +11,7 @@ import com.vova_cons.tanks_battle.services.ServiceLocator;
 import com.vova_cons.tanks_battle.utils.RandomUtils;
 
 public class TerrainTilesAtlas {
-    public static final String PATH = "tilesheet/terrainTiles_default.png";
+    public static final String PATH = "png/terrainTiles_default.png";
     public static final int TILE_SIZE = 64;
     public static final int EMPTY_GRASS = 0;
     public static final int EMPTY_SAND = 1;

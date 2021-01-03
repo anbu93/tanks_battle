@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import com.vova_cons.tanks_battle.screens.assets.GameAssets;
 import com.vova_cons.tanks_battle.screens.assets.TerrainTilesAtlas;
+import com.vova_cons.tanks_battle.screens.assets.UiBuilder;
 import com.vova_cons.tanks_battle.services.AssetsService;
 import com.vova_cons.tanks_battle.services.ScreensService;
 import com.vova_cons.tanks_battle.services.ServiceLocator;
@@ -32,6 +33,12 @@ public class IntroScreen extends BaseScreen {
     }
 
     private void startLoadingAssets() {
+        assetManager.load(UiBuilder.BLUE_BUTTON_IMG, Texture.class);
+        assetManager.load(UiBuilder.GREEN_BUTTON_IMG, Texture.class);
+        assetManager.load(UiBuilder.PANEL, Texture.class);
+        assetManager.load(UiBuilder.PANEL_GREEN, Texture.class);
+        assetManager.load(UiBuilder.CLOSE_RED_BG, Texture.class);
+        assetManager.load(UiBuilder.CLOSE_BLUE_CROSS, Texture.class);
         assetManager.load(TerrainTilesAtlas.PATH, Texture.class);
         assetManager.load(GameAssets.TANK_RED, Texture.class);
         assetManager.load(GameAssets.BULLET_RED, Texture.class);
