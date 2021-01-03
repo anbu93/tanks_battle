@@ -3,7 +3,7 @@ package com.vova_cons.tanks_battle.utils;
 
 import com.badlogic.gdx.math.Rectangle;
 
-public class MathUtils {
+public class GameMathUtils {
     public static float limit(float value, float minValue, float maxValue) {
         if (value < minValue) {
             value = minValue;

@@ -64,6 +64,10 @@ public class TerrainTilesAtlas {
         identifiers.add(type);
     }
 
+    public TextureRegion getSingle(int type) {
+        return regions.get(type);
+    }
+
     public TextureRegion get(int... types) {
         return regions.get(collectType(types));
     }

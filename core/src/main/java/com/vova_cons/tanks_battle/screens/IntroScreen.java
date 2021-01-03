@@ -4,6 +4,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
+import com.vova_cons.tanks_battle.screens.assets.GameAssets;
 import com.vova_cons.tanks_battle.screens.assets.TerrainTilesAtlas;
 import com.vova_cons.tanks_battle.services.AssetsService;
 import com.vova_cons.tanks_battle.services.ScreensService;
@@ -32,6 +33,8 @@ public class IntroScreen extends BaseScreen {
 
     private void startLoadingAssets() {
         assetManager.load(TerrainTilesAtlas.PATH, Texture.class);
+        assetManager.load(GameAssets.TANK_RED, Texture.class);
+        assetManager.load(GameAssets.BULLET_RED, Texture.class);
     }
 
     @Override

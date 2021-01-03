@@ -18,8 +18,8 @@ public class DesktopLauncher {
 	private static LwjglApplicationConfiguration getDefaultConfiguration() {
 		LwjglApplicationConfiguration configuration = new LwjglApplicationConfiguration();
 		configuration.title = "tanks_battle";
-		configuration.width = (int) (1920 * 0.75f);
-		configuration.height = (int) (1080 * 0.75f);
+		configuration.width = (int) (1920 * 0.5f);
+		configuration.height = (int) (1080 * 0.5f);
 		configuration.x = 0;
 		configuration.y = 0;
 		//// This prevents a confusing error that would appear after exiting normally.
