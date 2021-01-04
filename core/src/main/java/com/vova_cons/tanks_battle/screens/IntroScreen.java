@@ -33,6 +33,7 @@ public class IntroScreen extends BaseScreen {
     }
 
     private void startLoadingAssets() {
+        assetManager.load(UiBuilder.BLACK, Texture.class);
         assetManager.load(UiBuilder.BLUE_BUTTON_IMG, Texture.class);
         assetManager.load(UiBuilder.GREEN_BUTTON_IMG, Texture.class);
         assetManager.load(UiBuilder.PANEL, Texture.class);

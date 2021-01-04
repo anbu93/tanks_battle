@@ -12,6 +12,7 @@ import com.vova_cons.tanks_battle.screens.UI;
 import com.vova_cons.tanks_battle.screens.assets.UiBuilder;
 import com.vova_cons.tanks_battle.services.fonts_service.FontsService;
 import com.vova_cons.tanks_battle.services.settings.PlayerKeys;
+import com.vova_cons.tanks_battle.utils.Processor;
 import com.vova_cons.tanks_battle.utils.ViewUtils;
 
 public class SettingsView extends Group {
@@ -19,12 +20,15 @@ public class SettingsView extends Group {
     private ImageTextButton musicButton;
     private ImageTextButton soundButton;
     private VerticalGroup playerInputContent;
+    private InputKeysChangeView inputKeysChangeView;
 
     //region initialization
     public SettingsView(SettingsController controller) {
         this.controller = controller;
         controller.setView(this);
         createUi();
+        inputKeysChangeView = new InputKeysChangeView(controller);
+        this.addActor(inputKeysChangeView);
     }
 
     private void createUi() {
@@ -54,7 +58,7 @@ public class SettingsView extends Group {
     private void createBackButton() {
         Actor button = UiBuilder.createCloseButton();
         button.setPosition(UI.SCENE_WIDTH-50, UI.SCENE_HEIGHT-50, Align.center);
-        ViewUtils.clickListener(button, controller::onClickExit);
+        UiBuilder.clickListener(button, controller::onClickExit);
         this.addActor(button);
     }
 
@@ -71,13 +75,13 @@ public class SettingsView extends Group {
 
     private Actor createMusicButton() {
         musicButton = UiBuilder.createButton("Music: on", FontsService.Size.H1);
-        ViewUtils.clickListener(musicButton, controller::onClickMusic);
+        UiBuilder.clickListener(musicButton, controller::onClickMusic);
         return musicButton;
     }
 
     private Actor createSoundButton() {
         soundButton = UiBuilder.createButton("Sound: on", FontsService.Size.H1);
-        ViewUtils.clickListener(soundButton, controller::onClickSound);
+        UiBuilder.clickListener(soundButton, controller::onClickSound);
         return soundButton;
     }
 
@@ -103,11 +107,26 @@ public class SettingsView extends Group {
 
     public void redrawPlayer1Keys(PlayerKeys playerKeys) {
         playerInputContent.clear();
-        playerInputContent.addActor(ViewUtils.createLabel("up: " + Input.Keys.toString(playerKeys.up), FontsService.Size.H1, Color.BLACK));
-        playerInputContent.addActor(ViewUtils.createLabel("down: " + Input.Keys.toString(playerKeys.down), FontsService.Size.H1, Color.BLACK));
-        playerInputContent.addActor(ViewUtils.createLabel("left: " + Input.Keys.toString(playerKeys.left), FontsService.Size.H1, Color.BLACK));
-        playerInputContent.addActor(ViewUtils.createLabel("right: " +Input.Keys.toString(playerKeys.right), FontsService.Size.H1, Color.BLACK));
-        playerInputContent.addActor(ViewUtils.createLabel("fire: " + Input.Keys.toString(playerKeys.fire), FontsService.Size.H1, Color.BLACK));
+        playerInputContent.addActor(UiBuilder.createLabel("up: " + Input.Keys.toString(playerKeys.up), FontsService.Size.H1, Color.BLACK));
+        playerInputContent.addActor(UiBuilder.createLabel("down: " + Input.Keys.toString(playerKeys.down), FontsService.Size.H1, Color.BLACK));
+        playerInputContent.addActor(UiBuilder.createLabel("left: " + Input.Keys.toString(playerKeys.left), FontsService.Size.H1, Color.BLACK));
+        playerInputContent.addActor(UiBuilder.createLabel("right: " +Input.Keys.toString(playerKeys.right), FontsService.Size.H1, Color.BLACK));
+        playerInputContent.addActor(UiBuilder.createLabel("fire: " + Input.Keys.toString(playerKeys.fire), FontsService.Size.H1, Color.BLACK));
+        ImageTextButton button = UiBuilder.createButton("Change", FontsService.Size.H2);
+        UiBuilder.clickListener(button, controller::onClickChangePlayer1Keys);
+        playerInputContent.addActor(button);
+    }
+
+    public void showPlayerChangeView(Processor<PlayerKeys> callback) {
+        inputKeysChangeView.show(callback);
+    }
+
+    public boolean onInputKey(int keyCode) {
+        return inputKeysChangeView.onInputKey(keyCode);
+    }
+
+    public void hidePlayerChangeView() {
+        inputKeysChangeView.hide();
     }
     //endregion
 }

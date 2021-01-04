@@ -29,7 +29,7 @@ public abstract class BaseScreen implements Screen {
     @Override
     public void show() {
         create();
-        createBatchStageMultiplexer();
+        createBatchAndStage();
         setInputMultiplexer();
         start();
     }
@@ -39,7 +39,7 @@ public abstract class BaseScreen implements Screen {
         viewport = new FitViewport(WIDTH, HEIGHT);
     }
 
-    protected void createBatchStageMultiplexer() {
+    protected void createBatchAndStage() {
         batch = new PolygonSpriteBatch(8000);
         stage = new Stage(viewport, batch);
         stage.addActor(content);

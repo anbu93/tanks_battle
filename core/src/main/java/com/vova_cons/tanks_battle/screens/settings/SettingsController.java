@@ -27,6 +27,7 @@ public class SettingsController {
         view.redrawMusic(isSoundEnable);
         view.redrawSound(isSoundEnable);
         view.redrawPlayer1Keys(player1Keys);
+        view.hidePlayerChangeView();
     }
 
     public void update(float delta) {
@@ -51,10 +52,19 @@ public class SettingsController {
         view.redrawSound(isSoundEnable);
     }
 
-    public void onChangePlayer1Keys(int[] keys) {
-        player1Keys = new PlayerKeys(keys);
+    public void onClickChangePlayer1Keys() {
+        view.showPlayerChangeView(this::onChangePlayer1Keys);
+    }
+
+    public boolean onInputKey(int keyCode) {
+        return view.onInputKey(keyCode);
+    }
+
+    public boolean onChangePlayer1Keys(PlayerKeys keys) {
+        player1Keys = keys;
         // check keys valid?
         view.redrawPlayer1Keys(player1Keys);
+        return true;
     }
     //endregion
 

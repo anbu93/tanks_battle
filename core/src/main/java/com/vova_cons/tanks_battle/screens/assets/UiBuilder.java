@@ -15,12 +15,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
+import com.vova_cons.tanks_battle.screens.UI;
 import com.vova_cons.tanks_battle.services.AssetsService;
 import com.vova_cons.tanks_battle.services.ServiceLocator;
 import com.vova_cons.tanks_battle.services.fonts_service.FontsService;
 import com.vova_cons.tanks_battle.utils.ViewUtils;
 
-public class UiBuilder {
+public class UiBuilder extends ViewUtils {
+    public static final String BLACK = "ui/black.png";
     public static String BLUE_BUTTON_IMG = "ui/blue_button05.png";
     public static String GREEN_BUTTON_IMG = "ui/green_button05.png";
     public static String PANEL = "ui/grey_panel.png";
@@ -40,10 +42,11 @@ public class UiBuilder {
         return new ImageTextButton(text, style);
     }
 
-    public static Label createLabel(String text, FontsService.Size size, Color color) {
-        FontsService fontsService = ServiceLocator.getService(FontsService.class);
-        Label.LabelStyle labelStyle = new Label.LabelStyle(fontsService.getFont(size), color);
-        return new Label(text, labelStyle);
+    public static Actor createFade(float alpha) {
+        Image fade = new Image(getTexture(BLACK));
+        fade.setSize(UI.SCENE_WIDTH, UI.SCENE_HEIGHT);
+        fade.getColor().a = alpha;
+        return fade;
     }
 
     public static Actor createPanel() {
