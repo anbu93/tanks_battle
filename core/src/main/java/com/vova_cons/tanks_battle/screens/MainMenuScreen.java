@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Align;
 import com.vova_cons.tanks_battle.screens.assets.TerrainTilesAtlas;
 import com.vova_cons.tanks_battle.screens.assets.UiBuilder;
 import com.vova_cons.tanks_battle.screens.game.GameScreen;
+import com.vova_cons.tanks_battle.screens.settings.SettingsScreen;
 import com.vova_cons.tanks_battle.services.ScreensService;
 import com.vova_cons.tanks_battle.services.ServiceLocator;
 import com.vova_cons.tanks_battle.services.fonts_service.FontsService;
@@ -84,6 +85,7 @@ public class MainMenuScreen extends SingleCreateScreen {
     }
 
     private void clickOptions() {
+        SettingsScreen.PREV_SCREEN = ScreenType.MainMenu;
         screensService.changeScreen(ScreenType.Options);
     }
 

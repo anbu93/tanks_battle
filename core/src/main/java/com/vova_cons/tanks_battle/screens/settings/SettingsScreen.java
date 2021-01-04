@@ -8,7 +8,7 @@ import com.vova_cons.tanks_battle.screens.SingleCreateScreen;
 import com.vova_cons.tanks_battle.utils.input.InputKeyInterceptor;
 
 public class SettingsScreen extends SingleCreateScreen {
-    public static final ScreenType PREV_SCREEN = ScreenType.MainMenu;
+    public static ScreenType PREV_SCREEN = ScreenType.MainMenu;
     private SettingsController controller;
 
     @Override
