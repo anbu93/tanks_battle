@@ -14,10 +14,11 @@ import com.vova_cons.tanks_battle.utils.GameMathUtils;
 public class PlayerInputSystem extends EntitySystem {
     private final PlayerKeys keys;
     private final Entity player;
-    private int dx, dy;
-    private float maxSpeed = 3.5f;
+    private float maxSpeed = 2.5f;
     private float acceleration = 10f;
     private float deceleration = 10f;
+    private int dx, dy;
+    private boolean isFire = false;
 
     public PlayerInputSystem(PlayerKeys keys, Entity player) {
         this.keys = keys;
@@ -51,6 +52,7 @@ public class PlayerInputSystem extends EntitySystem {
         if (Gdx.input.isKeyPressed(keys.left)) {
             dx -= 1;
         }
+        isFire = Gdx.input.isKeyJustPressed(keys.fire);
     }
 
     private Vector2 vector = new Vector2();
@@ -58,6 +60,7 @@ public class PlayerInputSystem extends EntitySystem {
         Components.Velocity velocity = Components.velocity.get(entity);
         applyVelocity(entity, velocity, deltaTime);
         setRotation(entity, velocity);
+        applyFire(entity);
     }
 
     private void applyVelocity(Entity entity, Components.Velocity velocity, float deltaTime) {
@@ -94,6 +97,14 @@ public class PlayerInputSystem extends EntitySystem {
             Components.Rotation rotation = Components.rotation.get(entity);
             vector.set(velocity.x, velocity.y);
             rotation.value = vector.angleDeg() - 90;
+        }
+    }
+
+    private void applyFire(Entity entity) {
+        if (isFire) {
+            if (!Families.hasFireCooldown.matches(entity)) {
+                entity.add(Components.create(Components.Fire.class).setDamage(15));
+            }
         }
     }
 }

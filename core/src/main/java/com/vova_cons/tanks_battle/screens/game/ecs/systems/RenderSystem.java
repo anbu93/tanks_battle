@@ -78,7 +78,7 @@ public class RenderSystem extends SortedGameSystem {
                     body.w*TILE/2f, body.h*TILE/2f,
                     body.w*TILE, body.h*TILE,
                     1f, 1f,
-                    rotation.value - 180);
+                    rotation.value + sprite.rotation);
         } else {
             batch.draw(texture, body.x*TILE, body.y*TILE, body.w*TILE, body.h*TILE);
         }

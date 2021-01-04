@@ -42,6 +42,7 @@ public class IntroScreen extends BaseScreen {
         assetManager.load(UiBuilder.CLOSE_BLUE_CROSS, Texture.class);
         assetManager.load(TerrainTilesAtlas.PATH, Texture.class);
         assetManager.load(GameAssets.TANK_RED, Texture.class);
+        assetManager.load(GameAssets.TANK_BLUE, Texture.class);
         assetManager.load(GameAssets.BULLET_RED, Texture.class);
     }
 

@@ -11,4 +11,6 @@ public class Families {
     public static Family players = Family.all(Components.Player.class).get();
     public static Family bullets = Family.all(Components.Bullet.class).get();
     public static Family alive = Family.all(Components.Health.class).get();
+    public static Family hasFire = Family.all(Components.Fire.class).get();
+    public static Family hasFireCooldown = Family.all(Components.FireCooldown.class).get();
 }
