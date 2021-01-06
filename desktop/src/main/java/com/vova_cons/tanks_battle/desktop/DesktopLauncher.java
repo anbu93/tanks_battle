@@ -20,6 +20,7 @@ public class DesktopLauncher {
 		configuration.title = "tanks_battle";
 		configuration.width = (int) (1920 * 0.5f);
 		configuration.height = (int) (1080 * 0.5f);
+		configuration.resizable = false;
 		configuration.x = 0;
 		configuration.y = 0;
 		//// This prevents a confusing error that would appear after exiting normally.

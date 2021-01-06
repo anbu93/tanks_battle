@@ -44,7 +44,8 @@ public class Entities {
         vector.set(0, speed).setAngleDeg(angle);
         entity.add(Components.create(Components.Velocity.class).set(vector.x, vector.y));
         entity.add(Components.create(Components.Rotation.class).set(vector.angleDeg()));
-        entity.add(Components.create(Components.Bullet.class).set(team, damage));
+        entity.add(Components.create(Components.Bullet.class).set(damage));
+        entity.add(Components.create(Components.Team.class).set(team));
         entity.add(Components.create(Components.Drawable.class).setZ(1));
         entity.add(Components.create(Components.Sprite.class).setTexture(GameAssets.BULLET_RED));
         return entity;

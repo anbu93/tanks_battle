@@ -64,9 +64,7 @@ public class Components {
     }
     public static class Bullet implements Component {
         public float damage;
-        public int team;
-        public Bullet set(int team, float damage) {
-            this.team = team;
+        public Bullet set(float damage) {
             this.damage = damage;
             return this;
         }

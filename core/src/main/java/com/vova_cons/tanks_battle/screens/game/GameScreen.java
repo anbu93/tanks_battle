@@ -57,6 +57,7 @@ public class GameScreen extends BaseScreen {
         engine.addSystem(new FireSystem(world));
         engine.addSystem(new MoveSystem(world));
         engine.addSystem(new DamageSystem(world));
+        engine.addSystem(new DeathSystem(world));
         engine.addSystem(new RenderSystem(world, batch));
     }
 
